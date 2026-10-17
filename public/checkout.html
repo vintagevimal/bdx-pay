@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Pay with BDX</title>
+<style>
+  :root { --bg:#eceff3; --ink:#161b22; --mute:#5b6572; --line:#cfd5dd; --card:#f7f9fb; --accent:#1d5b78; --ok:#1f7a4d; --bad:#a63a2e; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#12171d; --ink:#e6eaef; --mute:#93a0ae; --line:#2b333d; --card:#181f27; --accent:#6fb4d4; --ok:#5ec28d; --bad:#e8826f; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; min-height:100vh; display:grid; place-items:center; padding:20px; background:var(--bg); color:var(--ink);
+         font:16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { width:100%; max-width:460px; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:28px; }
+  h1 { font-size:15px; font-weight:600; margin:0 0 20px; color:var(--mute); }
+  .amount { font:600 40px/1.1 ui-monospace, "Cascadia Code", Consolas, monospace; letter-spacing:-0.02em; }
+  .amount small { font-size:18px; color:var(--mute); margin-left:6px; font-weight:500; }
+  .addr { margin:20px 0 8px; padding:12px; border:1px dashed var(--line); border-radius:6px;
+          font:13px/1.5 ui-monospace, Consolas, monospace; word-break:break-all; user-select:all; }
+  button { font:inherit; font-weight:600; padding:10px 16px; border-radius:6px; border:1px solid var(--accent);
+           background:var(--accent); color:var(--card); cursor:pointer; }
+  button:focus-visible { outline:3px solid var(--ink); outline-offset:2px; }
+  .bar { display:flex; gap:4px; margin:26px 0 8px; }
+  .bar i { flex:1; height:8px; border-radius:2px; background:var(--line); }
+  .bar i.on { background:var(--accent); }
+  .done .bar i.on { background:var(--ok); }
+  #status { font-weight:600; }
+  .done #status { color:var(--ok); } .failed #status { color:var(--bad); }
+  p.note { margin:24px 0 0; padding-top:16px; border-top:1px solid var(--line); font-size:13px; color:var(--mute); }
+  p.meta { margin:4px 0 0; font-size:14px; color:var(--mute); }
+</style>
+</head>
+<body>
+<main id="app">
+  <h1>Pay with BDX</h1>
+  <div class="amount"><span id="amount">&hellip;</span><small>BDX</small></div>
+  <div class="addr" id="addr">Loading invoice&hellip;</div>
+  <button id="copy" type="button">Copy address</button>
+  <div class="bar" id="bar" aria-hidden="true"></div>
+  <div id="status" role="status" aria-live="polite">Waiting for payment</div>
+  <p class="meta" id="meta"></p>
+  <p class="note">This page asks for no personal details, sets no cookies, and loads nothing from other sites.
+  This payment goes to a one-time address made only for this order.</p>
+</main>
+<script src="/checkout.js"></script>
+</body>
+</html>
